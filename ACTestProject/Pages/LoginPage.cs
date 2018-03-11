@@ -5,37 +5,19 @@ namespace ACTestProject.Pages
 {
 
     class LoginPage
-    { 
+    {
         public LoginPage()
         {
-            PageFactory.InitElements(Browser.GetDriver(Drivers.Chrome), this);
+            //PageFactory.InitElements(Browser.GetDriver(Drivers.Chrome), this);
         }
 
-        //[FindsBy(How = How.XPath, Using = "//a[contains(text(),'Sign In')]")]
-        [FindsBy(How = How.LinkText, Using = "/users/sign_in")]
-        public IWebElement navSignIn;
+        public int timeout = 5;
 
-        [FindsBy(How = How.LinkText, Using = "/users/sign_in")]
-        public IWebElement btnSignIn;
+        public IWebElement txtEmail => Browser.Driver.FindElement(By.Id("user_email"));
 
-        [FindsBy(How = How.Id, Using = "Email")]
-        public IWebElement txtEmail;
+        public IWebElement txtPassword => Browser.Driver.FindElement(By.Id("user_password"));
 
-        [FindsBy(How = How.Id, Using = "Password")]
-        public IWebElement txtPassword;
-
-        [FindsBy(How = How.Id, Using = "Login")]
-        public IWebElement btnLogin;
-
-        public void ClickSignInNav()
-        {
-            navSignIn.Click();
-        }
-
-        public void ClickSignInButton()
-        {
-            btnSignIn.Click();
-        }
+        public IWebElement btnSignIn => Browser.Driver.FindElement(By.Name("commit"));
 
         public void Login(string email, string password)
         {
@@ -43,10 +25,11 @@ namespace ACTestProject.Pages
             txtPassword.SendKeys(password);
         }
 
-        public ToDoAppPage ClickLogin()
+        public ToDoAppPage ClickSignInButton()
         {
-            btnLogin.Submit();
+            btnSignIn.Click();
             return new ToDoAppPage();
         }
     }
 }
+
