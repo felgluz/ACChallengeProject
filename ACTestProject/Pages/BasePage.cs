@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ACTestProject.Pages
 {
-    class ToDoAppPage
+    class BasePage
     {
+
     }
 }
