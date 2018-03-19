@@ -1,5 +1,5 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +8,25 @@ using System.Threading.Tasks;
 
 namespace ACTestProject.Pages
 {
-    class HomePage
+    class HomePage : BasePage
     {
-        //public HomePage()
-        //{
-        //    PageFactory.InitElements(Browser.GetDriver(Drivers.Chrome), this);
-        //}
+        public IList<IWebElement> btnMyTasks => Browser.Driver.FindElements(By.XPath("//a[contains(text(),'My Tasks')]"));
 
-        //[FindsBy(How = How.XPath, Using = "//a[contains(text(),'Sign In']")]
-        //public IWebElement btnSignIn;
+        public void ClickOnMyTasksNavBar()
+        {
+            Assert.IsTrue(Browser.ElementIsPresent(By.XPath("//a[contains(text(),'My Tasks')]"), PropertiesCollection.timeoutInSeconds));
+            btnMyTasks[0].Click();
+        }
 
-        //public void ClickSignIn()
-        //{
-        //    btnSignIn.Click();
-        //}
+        public void ClickOnMyTasksButton()
+        {
+            Assert.IsTrue(Browser.ElementIsPresent(By.XPath("//a[contains(text(),'My Tasks')]"), PropertiesCollection.timeoutInSeconds));
+            btnMyTasks[1].Click();
+        }
+
+        public void isLoggedIn()
+        {
+            Assert.IsTrue(Browser.ElementIsPresent(By.XPath("//a[contains(text(),'My Tasks')]"), PropertiesCollection.timeoutInSeconds));
+        }
     }
 }

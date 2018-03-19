@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -78,19 +79,41 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Browser.cs" />
+    <Compile Include="Feature\CreateSubTask.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateSubTask.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Feature\CreateTask.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateTask.feature</DependentUpon>
+    </Compile>
     <Compile Include="Feature\Login.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.feature</DependentUpon>
     </Compile>
-    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Hooks\HookConfig.cs" />
+    <Compile Include="Pages\BasePage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\ToDoAppPage.cs" />
+    <Compile Include="Pages\PropertiesCollection.cs" />
+    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\ToDoListPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\LoginSeps.cs" />
+    <Compile Include="Steps\LoginSteps.cs" />
+    <Compile Include="Steps\ToDoListSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Feature\CreateSubTask.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateSubTask.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Feature\CreateTask.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateTask.feature.cs</LastGenOutput>
+    </None>
     <None Include="Feature\Login.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Login.feature.cs</LastGenOutput>
@@ -127,6 +150,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\SpecFlow.2.3.1\build\SpecFlow.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SpecFlow.2.3.1\build\SpecFlow.targets'))" />
     <Error Condition="!Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
   </Target>
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.36.0\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

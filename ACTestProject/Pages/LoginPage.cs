@@ -4,14 +4,12 @@ using OpenQA.Selenium.Support.PageObjects;
 namespace ACTestProject.Pages
 {
 
-    class LoginPage
+    class LoginPage : BasePage
     {
         public LoginPage()
         {
             //PageFactory.InitElements(Browser.GetDriver(Drivers.Chrome), this);
-        }
-
-        public int timeout = 5;
+        }        
 
         public IWebElement txtEmail => Browser.Driver.FindElement(By.Id("user_email"));
 
@@ -25,11 +23,12 @@ namespace ACTestProject.Pages
             txtPassword.SendKeys(password);
         }
 
-        public ToDoAppPage ClickSignInButton()
+        public HomePage ClickSignInButton()
         {
             btnSignIn.Click();
-            return new ToDoAppPage();
-        }
+            Browser.ElementIsPresent(By.Name("commit"), PropertiesCollection.timeoutInSeconds);
+            return new HomePage();
+        }       
     }
 }
 
