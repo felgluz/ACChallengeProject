@@ -1,3 +1,3 @@
 # ACChallengeProject
 
-Project C# with Specflow and Page Object Modal
+Project C# with Specflow and Page Object Model
